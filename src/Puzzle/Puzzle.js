@@ -32,12 +32,15 @@ export default function Puzzle({ grid, updatePuzzle }) {
         <div className="puzzle-container">
             {grid.map((row, i) => (
                 <div key={i} className="puzzle-row">
-                    {row.map((col, j) => (
-                        <span key={j} onClick={() => moveTile(i, j)} className="puzzle-square">{col}</span>
-                    ))}
+                    {row.map((col, j) => {
+                        if (col !== 0) {
+                          return (<span key={j} onClick={() => moveTile(i, j)} className="puzzle-square">{col}</span>);
+                        } else {
+                          return (<span key={j} onClick={() => moveTile(i, j)} className="blank-tile"></span>);
+                        }
+                    })}
                 </div>
             ))}
         </div>
     );
-
 }
