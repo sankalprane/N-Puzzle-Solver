@@ -1,0 +1,23 @@
+.puzzle-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    border: 1px solid gray;
+  }
+  
+  .puzzle-row {
+    display: flex;
+    height: 100%;
+  }
+  
+  .puzzle-square {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    text-align: center;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+  }
