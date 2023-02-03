@@ -4,7 +4,7 @@ import './HomePage.css';
 
 export default function HomePage() {
 
-  const [configuration, setConfiguration] = useState([[5, 1, 2, 3], [9, 6, 7, 4], [13, 10, 11, 8], [0, 14, 15, 12]]);
+  const [configuration, setConfiguration] = useState([[1, 2, 3], [4, 5, 6], [7, 8, 0]]);
 
   useEffect(() => {
     console.log('inside useEffect');
@@ -65,7 +65,7 @@ export default function HomePage() {
   }
 
   async function postData(url, data = { start: configuration }) {
-    const response = await fetch('http://localhost:4000/bfs/', {
+    const response = await fetch('http://localhost:4000/astar/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
