@@ -6,14 +6,14 @@
     fill: red;
 }
 
-.node__branch>circle {
+/* .node__branch>circle {
     fill: black;
 }
 
 .node__leaf>circle {
     fill: black;
-}
-
-/* .rd3t-tree-container.rd3t-grabbable svg g{
-    transform: translate(50%, 10%);
 } */
+
+.treeWrapper > circle {
+    fill: red;
+}
