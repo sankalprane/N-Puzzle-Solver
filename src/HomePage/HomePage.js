@@ -5,10 +5,8 @@ import './HomePage.css';
 
 export default function HomePage() {
 
-  let data = {name: [[1,2],[3,4]]}
-
   const [configuration, setConfiguration] = useState([[1, 2, 3], [4, 5, 6], [7, 8, 0]]);
-  const [tree, setTree] = useState({name: [[1,2],[3,4]]});
+  const [tree, setTree] = useState({name: [[1,2,3],[4,5,6],[7,8,0]]});
 
   useEffect(() => {
     console.log('inside useEffect');
@@ -64,7 +62,6 @@ export default function HomePage() {
     console.log('working??');
     postData().then((res) => {
       console.log(res);
-      data = res.tree;
       setTree(res.tree);
       // console.log(this.data);
       solve(res.path);
