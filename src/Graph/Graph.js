@@ -4,53 +4,57 @@ import './Graph.css';
 
 // This is a simplified example of an org chart with a depth of 2.
 // Note how deeper levels are defined recursively via the `children` property.
-const orgChart = {
-    name: 'CEO',
-    children: [
-        {
-            name: 'Manager',
-            attributes: {
-                department: 'Production',
-            },
-            children: [
-                {
-                    name: 'Foreman',
-                    attributes: {
-                        department: 'Fabrication',
-                    },
-                    children: [
-                        {
-                            name: 'Worker',
-                        },
-                    ],
-                },
-                {
-                    name: 'Foreman',
-                    attributes: {
-                        department: 'Assembly',
-                    },
-                    children: [
-                        {
-                            name: 'Worker',
-                        },
-                    ],
-                },
-            ],
-        },
-    ],
-};
+// const orgChart = {
+//     name: 'CEO',
+//     children: [
+//         {
+//             name: 'Manager',
+//             attributes: {
+//                 department: 'Production',
+//             },
+//             children: [
+//                 {
+//                     name: 'Foreman',
+//                     attributes: {
+//                         department: 'Fabrication',
+//                     },
+//                     children: [
+//                         {
+//                             name: 'Worker',
+//                         },
+//                     ],
+//                 },
+//                 {
+//                     name: 'Foreman',
+//                     attributes: {
+//                         department: 'Assembly',
+//                     },
+//                     children: [
+//                         {
+//                             name: 'Worker',
+//                         },
+//                     ],
+//                 },
+//             ],
+//         },
+//     ],
+// };
 
-
-export default function Graph() {
+export default function Graph({data}) {
 
     function display(e) {
         console.log(e);
     }
 
+    function test() {
+        console.log(data);
+        return JSON.stringify(data)
+    }
+
     return (
         // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
         <div id="treeWrapper" style={{ width: '100em', height: '100em' }}>
-            <Tree data={orgChart} onNodeMouseOver={display} 
+            <Tree data={data} onNodeMouseOver={display} 
             pathFunc={"straight"} orientation={"vertical"} collapsible={false} 
             rootNodeClassName="node__root"
             branchNodeClassName="node__branch"
