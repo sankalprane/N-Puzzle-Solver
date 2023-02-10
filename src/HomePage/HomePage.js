@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Graph from '../Graph/Graph';
 import Puzzle from '../Puzzle/Puzzle';
 import './HomePage.css';
 
@@ -65,7 +66,7 @@ export default function HomePage() {
   }
 
   async function postData(url, data = { start: configuration }) {
-    const response = await fetch('http://localhost:4000/astar/', {
+    const response = await fetch('/astar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -77,8 +78,13 @@ export default function HomePage() {
 
   return (
     <>
-      <Puzzle grid={configuration} updatePuzzle={setConfiguration}/>
-      <button onClick={solvePuzzle}>Solve Puzzle!</button>
+      <div>
+        <Puzzle grid={configuration} updatePuzzle={setConfiguration}/>
+        <button onClick={solvePuzzle}>Solve Puzzle!</button>
+      </div>
+      <div>
+        <Graph></Graph>
+      </div>
     </>
   )
 }

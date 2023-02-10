@@ -1,0 +1,15 @@
+.rd3t-label__title {
+    display: none;
+}
+
+.node__root>circle {
+    fill: red;
+}
+
+.node__branch>circle {
+    fill: black;
+}
+
+.node__leaf>circle {
+    fill: black;
+}
