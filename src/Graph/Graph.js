@@ -1,46 +1,16 @@
 import React from 'react';
 import Tree from 'react-d3-tree';
 import './Graph.css';
+import { useCenteredTree } from "../helper";
 
-// This is a simplified example of an org chart with a depth of 2.
-// Note how deeper levels are defined recursively via the `children` property.
-// const orgChart = {
-//     name: 'CEO',
-//     children: [
-//         {
-//             name: 'Manager',
-//             attributes: {
-//                 department: 'Production',
-//             },
-//             children: [
-//                 {
-//                     name: 'Foreman',
-//                     attributes: {
-//                         department: 'Fabrication',
-//                     },
-//                     children: [
-//                         {
-//                             name: 'Worker',
-//                         },
-//                     ],
-//                 },
-//                 {
-//                     name: 'Foreman',
-//                     attributes: {
-//                         department: 'Assembly',
-//                     },
-//                     children: [
-//                         {
-//                             name: 'Worker',
-//                         },
-//                     ],
-//                 },
-//             ],
-//         },
-//     ],
-// };
+const containerStyles = {
+    width: "100vw",
+    height: "100vh"
+};
 
 export default function Graph({data}) {
+
+    const [translate, containerRef] = useCenteredTree();
 
     function display(e) {
         console.log(e);
@@ -53,9 +23,9 @@ export default function Graph({data}) {
 
     return (
         // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
-        <div id="treeWrapper" style={{ width: '100em', height: '100em' }}>
-            <Tree data={data} onNodeMouseOver={display} 
-            pathFunc={"straight"} orientation={"vertical"} collapsible={false} 
+        <div id="treeWrapper" ref={containerRef} style={containerStyles}>
+            <Tree data={data} onNodeMouseOver={display} translate={translate}
+            pathFunc={"straight"} orientation={"vertical"} collapsible={true} 
             rootNodeClassName="node__root"
             branchNodeClassName="node__branch"
             leafNodeClassName="node__leaf"/>
