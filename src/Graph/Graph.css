@@ -1,19 +1,18 @@
-/* .rd3t-label__title {
+.rd3t-label__title {
     display: none;
-} */
+}
 
 .node__root>circle {
     fill: red;
 }
 
-/* .node__branch>circle {
-    fill: black;
+#tree-wrapper {
+    text-decoration:none;
+    position:relative;
 }
 
-.node__leaf>circle {
-    fill: black;
-} */
-
-.treeWrapper > circle {
-    fill: red;
+#tree-wrapper #tooltip {
+    display:none;
+    position:fixed;
+    overflow:hidden;
 }

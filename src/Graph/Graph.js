@@ -13,54 +13,59 @@ const goal = [[1,2,3],[4,5,6],[7,8,0]]
 export default function Graph({data}) {
 
     const [translate, containerRef] = useCenteredTree();
+    const tooltip = document.querySelector("#tooltip");
 
-    function display(e) {
-        // console.log(JSON.stringify(e.source.data));
+    function onNodeMouseOver(e) {
+        console.log(e);
+        tooltip.style.display = "block";
+        // tooltip.textContent = 'node'
     }
 
-    const getDynamicPathClass = ({ source, target }, orientation) => {
+    function onNodeMouseOut() {
+        tooltip.style.display = "none";
+    }
 
-        // console.log('every node',target);
+    window.onmousemove = function (e) {
+        let x = e.clientX;
+        let y = e.clientY;
+        tooltip.style.top = (y + 20) + 'px';
+        tooltip.style.left = (x + 20) + 'px';
+    };
+
+    const colorNodes = ({ source, target }, orientation) => {
 
         const circle_of_nodes = document.querySelectorAll('.rd3t-node > circle')
-        // console.log('circles', circle_of_nodes);
         for (let circle of circle_of_nodes) {
-            // console.log('circle', circle)
             circle.setAttribute("fill", "black");
         }
 
         const circle_of_leaf_nodes = document.querySelectorAll('.rd3t-leaf-node > circle')
-        // console.log('circles2', circle_of_leaf_nodes);
         for (let circle of circle_of_leaf_nodes) {
-            // console.log('circle', circle)
             circle.setAttribute("fill", "black");
         }
 
         if (JSON.stringify(target.data.name) === JSON.stringify(goal)) {
-            console.log('goal node',target);
-
             const goalNode = document.getElementById(target.data.__rd3t.id);
-            console.log('goalNode', goalNode);
             setTimeout(() => {
                 if (goalNode) {
                     goalNode.firstChild.setAttribute("fill", "green");
                 }
-                
             }, 1000)
         }
       };
 
-    function test() {
-        console.log(data);
-        return JSON.stringify(data)
-    }
-
     return (
         // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
-        <div id="treeWrapper" ref={containerRef} style={containerStyles}>
-            <Tree data={data} onNodeMouseOver={display} translate={translate}
-            pathFunc={"straight"} orientation={"vertical"} collapsible={true} 
-            pathClassFunc={getDynamicPathClass}
+        <div id="tree-wrapper" ref={containerRef} style={containerStyles}>
+            <div id="tooltip">
+                <div>[1,2,3]</div>
+                <div>[4,5,6]</div>
+                <div>[7,8,9]</div>
+            </div>
+            <Tree data={data} translate={translate}
+            pathFunc={"straight"} orientation={"vertical"} collapsible={false} 
+            pathClassFunc={colorNodes}
+            onNodeMouseOver={onNodeMouseOver} onNodeMouseOut = {onNodeMouseOut}
             rootNodeClassName="node__root"
             branchNodeClassName="node__branch"
             leafNodeClassName="node__leaf"/>
