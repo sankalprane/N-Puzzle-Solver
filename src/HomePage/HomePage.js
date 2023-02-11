@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Graph from '../Graph/Graph';
 import Puzzle from '../Puzzle/Puzzle';
+import Options from '../Options/Options';
 import './HomePage.css';
+import { Button, Container } from '@chakra-ui/react'
 
 export default function HomePage() {
 
   const [configuration, setConfiguration] = useState([[1, 2, 3], [4, 5, 6], [7, 8, 0]]);
   const [tree, setTree] = useState({name: [[1,2,3],[4,5,6],[7,8,0]]});
+  const [algorithm, setAlgorithm] = React.useState('astar')
 
   useEffect(() => {
     console.log('inside useEffect');
@@ -69,7 +72,7 @@ export default function HomePage() {
   }
 
   async function postData(url, data = { start: configuration }) {
-    const response = await fetch('http://localhost:4000/bfs', {
+    const response = await fetch(`http://localhost:4000/${algorithm}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -79,11 +82,17 @@ export default function HomePage() {
     return response.json(); 
   }
 
+
+
   return (
     <>
-      <div>
+      <nav>N-PUZZLE SOLVER</nav>
+      <div className='main-div'>
         <Puzzle grid={configuration} updatePuzzle={setConfiguration}/>
-        <button onClick={solvePuzzle}>Solve Puzzle!</button>
+        <div className='settings-div'>
+          <Options algorithm={algorithm} setAlgorithm={setAlgorithm}></Options>
+          <Button onClick={solvePuzzle} colorScheme='teal'>Solve Puzzle!</Button>
+        </div>
       </div>
       <div>
         <Graph data={tree}></Graph>
