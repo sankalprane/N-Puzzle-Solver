@@ -11,6 +11,7 @@ export default function Options({ algorithm, setAlgorithm }) {
                 <Stack direction='column'>
                     <Radio value='astar'>A-Star</Radio>
                     <Radio value='bfs'>Breadth First Search</Radio>
+                    <Radio value='iddfs'>Iterative Deepening Depth First Search</Radio>
                 </Stack>
             </RadioGroup>
         </div>
