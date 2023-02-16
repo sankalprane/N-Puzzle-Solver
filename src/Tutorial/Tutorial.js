@@ -4,6 +4,8 @@ import PageOne from './PageOne/PageOne';
 import PageTwo from './PageTwo/PageTwo';
 import PageThree from './PageThree/PageThree';
 import PageFour from './PageFour/PageFour';
+import PageFive from './PageFive/PageFive';
+import PageSix from './PageSix/PageSix';
 import {
     Modal,
     ModalOverlay,
@@ -65,12 +67,29 @@ export default function Tutorial() {
             <Button colorScheme='teal' onClick={nextPage}>Next</Button>
             <Button colorScheme='teal' onClick={onClose}>Cancel</Button>
         </div>
-    } else {
+    } else if (page === 4) {
         displayPage = <PageFour></PageFour>
         displayButtons =
         <div className='modal-buttons'>
             <Button colorScheme='teal' onClick={previousPage}>Back</Button>
+            <Button colorScheme='teal' onClick={nextPage}>Next</Button>
             <Button colorScheme='teal' onClick={onClose}>Cancel</Button>
+        </div>
+    } else if (page === 5) {
+        displayPage = <PageFive></PageFive>
+        displayButtons =
+        <div className='modal-buttons'>
+            <Button colorScheme='teal' onClick={previousPage}>Back</Button>
+            <Button colorScheme='teal' onClick={nextPage}>Next</Button>
+            <Button colorScheme='teal' onClick={onClose}>Cancel</Button>
+        </div>
+    } else {
+        displayPage = <PageSix></PageSix>
+        displayButtons =
+        <div className='modal-buttons'>
+            <Button colorScheme='teal' onClick={previousPage}>Back</Button>
+            <Button colorScheme='teal' isDisabled={true}>Next</Button>
+            <Button colorScheme='teal' onClick={onClose}>Finish</Button>
         </div>
     }
 
