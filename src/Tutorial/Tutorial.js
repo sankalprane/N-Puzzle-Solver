@@ -95,8 +95,6 @@ export default function Tutorial() {
 
     return (
         <>
-            <Button onClick={onOpen}>Open Modal</Button>
-
             <Modal closeOnOverlayClick={false} size='xl' isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
