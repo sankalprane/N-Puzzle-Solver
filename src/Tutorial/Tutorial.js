@@ -1,7 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './Tutorial.css'
 import PageOne from './PageOne/PageOne';
 import PageTwo from './PageTwo/PageTwo';
+import PageThree from './PageThree/PageThree';
+import PageFour from './PageFour/PageFour';
 import {
     Modal,
     ModalOverlay,
@@ -33,23 +35,49 @@ export default function Tutorial() {
 
     function previousPage() {
         setPage((pageNumber) => {
-                pageNumber--;
+            pageNumber--;
             console.log(pageNumber);
             return pageNumber;
         })
     }
 
-    let displayPage;
+    let displayPage, displayButtons;
     if (page === 1) {
         displayPage = <PageOne></PageOne>
-    } else {
+        displayButtons =
+            <div className='modal-buttons'>
+                <Button colorScheme='teal' onClick={nextPage}>Next</Button>
+                <Button colorScheme='teal' onClick={onClose}>Cancel</Button>
+            </div>
+    } else if (page === 2) {
         displayPage = <PageTwo></PageTwo>
+        displayButtons =
+        <div className='modal-buttons'>
+            <Button colorScheme='teal' onClick={previousPage}>Back</Button>
+            <Button colorScheme='teal' onClick={nextPage}>Next</Button>
+            <Button colorScheme='teal' onClick={onClose}>Cancel</Button>
+        </div>
+    } else if (page === 3) {
+        displayPage = <PageThree></PageThree>
+        displayButtons =
+        <div className='modal-buttons'>
+            <Button colorScheme='teal' onClick={previousPage}>Back</Button>
+            <Button colorScheme='teal' onClick={nextPage}>Next</Button>
+            <Button colorScheme='teal' onClick={onClose}>Cancel</Button>
+        </div>
+    } else {
+        displayPage = <PageFour></PageFour>
+        displayButtons =
+        <div className='modal-buttons'>
+            <Button colorScheme='teal' onClick={previousPage}>Back</Button>
+            <Button colorScheme='teal' onClick={onClose}>Cancel</Button>
+        </div>
     }
 
     return (
-            <>
+        <>
             <Button onClick={onOpen}>Open Modal</Button>
-    
+
             <Modal closeOnOverlayClick={false} size='xl' isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -58,11 +86,9 @@ export default function Tutorial() {
                     <ModalBody pb={6}>
                         {displayPage}
                     </ModalBody>
-    
+                        {displayButtons}
                     <ModalFooter>
-                        <Button colorScheme='teal' onClick={previousPage}>Back</Button>
-                        <Button colorScheme='teal' onClick={nextPage}>Next</Button>
-                        <Button colorScheme='teal' onClick={onClose}>Cancel</Button>
+
                     </ModalFooter>
                 </ModalContent>
             </Modal>

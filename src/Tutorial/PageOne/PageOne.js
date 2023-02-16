@@ -10,6 +10,7 @@ export default function PageOne() {
     return (
         <>
             <div className='tutorial-text-1'>Click on the Tile next to the empty square to move it into the empty space</div>
+            <br></br>
             <div className='tutorial-modal-body'>
                 <Puzzle grid={conf_one} />
                 <div className='mouse-pointer'>
