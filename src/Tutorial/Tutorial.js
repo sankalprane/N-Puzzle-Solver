@@ -1,53 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Tutorial.css'
-import Puzzle from '../Puzzle/Puzzle';
+import PageOne from './PageOne/PageOne';
+import PageTwo from './PageTwo/PageTwo';
 
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Button,
-    useDisclosure
-} from '@chakra-ui/react'
+export default function Tutorial() {
 
-export default function ManualClose() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const conf_one = [[1, 2, 3], [4, 5, 6], [7, 0, 8]];
-    const conf_two = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
+    const [page, setPage] = useState(1);
 
+    function nextPage() {
+        setPage((pageNumber) => {
+            pageNumber++;
+            console.log(pageNumber);
+            return pageNumber;
+        })
+    }
+
+    function previousPage() {
+        setPage((pageNumber) => {
+            pageNumber--;
+            console.log(pageNumber);
+            return pageNumber;
+        })
+    }
+
+    let displayPage;
+    if (page === 1) {
+        displayPage = <PageOne nextPage={nextPage}></PageOne>
+    } else {
+        displayPage = <PageTwo previousPage={previousPage}></PageTwo>
+    }
 
     return (
-        <>
-            <Button onClick={onOpen}>Open Modal</Button>
-
-            <Modal closeOnOverlayClick={false} size='xl' isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>TUTORIAL</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody pb={6}>
-                        <div className='tutorial-text-1'>Click on the Tile next to the empty square to move it into the empty space</div>
-                        <div className='tutorial-modal-body'>
-                            <Puzzle grid={conf_one} />
-                            <div className='mouse-pointer'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 0l16 12.279-6.951 1.17 4.325 8.817-3.596 1.734-4.35-8.879-5.428 4.702z" /></svg>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="brown" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-                            </svg>
-                            <Puzzle grid={conf_two} />
-                        </div>
-                    </ModalBody>
-
-                    <ModalFooter>
-                        <Button colorScheme='teal' onClick={onClose}>Cancel</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
-        </>
+        displayPage
     )
 }

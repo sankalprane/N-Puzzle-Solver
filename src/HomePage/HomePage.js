@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Graph from '../Graph/Graph';
 import Puzzle from '../Puzzle/Puzzle';
 import Options from '../Options/Options';
-import ManualClose from '../Tutorial/Tutorial';
+import Tutorial from '../Tutorial/Tutorial';
 import './HomePage.css';
 import { Button, Container } from '@chakra-ui/react'
+
 
 export default function HomePage() {
 
@@ -90,7 +91,7 @@ export default function HomePage() {
       <nav>N-PUZZLE SOLVER</nav>
       <div className='main-div'>
         <Puzzle grid={configuration} updatePuzzle={setConfiguration} />
-        <ManualClose></ManualClose>
+        <Tutorial></Tutorial>
         <div className='settings-div'>
           <Options algorithm={algorithm} setAlgorithm={setAlgorithm}></Options>
           <Button onClick={solvePuzzle} colorScheme='teal'>Solve Puzzle!</Button>
