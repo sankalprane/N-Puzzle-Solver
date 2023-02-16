@@ -1,0 +1,14 @@
+.modal-buttons {
+    width: 100%;
+    padding: 0 25px;
+    display: flex;
+    justify-content: end;
+}
+
+.modal-buttons .chakra-button {
+    margin-left: 20px;
+}
+
+.chakra-modal__body {
+    min-height: 375px;
+}

@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import Graph from '../Graph/Graph';
 import Puzzle from '../Puzzle/Puzzle';
 import Options from '../Options/Options';
+import Tutorial from '../Tutorial/Tutorial';
 import './HomePage.css';
 import { Button, Container } from '@chakra-ui/react'
+
 
 export default function HomePage() {
 
   const [configuration, setConfiguration] = useState([[1, 2, 3], [4, 5, 6], [7, 8, 0]]);
-  const [tree, setTree] = useState({name: [[1,2,3],[4,5,6],[7,8,0]]});
+  const [tree, setTree] = useState({ name: [[1, 2, 3], [4, 5, 6], [7, 8, 0]] });
   const [algorithm, setAlgorithm] = React.useState('astar')
 
   useEffect(() => {
@@ -45,18 +47,18 @@ export default function HomePage() {
   }
 
   function solve(path) {
-    for (let i =0; i < path.length; i++) {
-    let move = path[i]
-    setTimeout(() => {
-      console.log(move);
-      setConfiguration((oldConf) => {
-        let [oldX, oldY, newX, newY] = nextMove(oldConf, move);
-        console.log(oldX, oldY, newX, newY);
-        const newConf = deepCopyArray(oldConf);
-        [newConf[newX][newY], newConf[oldX][oldY]] = [newConf[oldX][oldY], newConf[newX][newY]];
-        return newConf;
-      })
-    }, 1000 * i);
+    for (let i = 0; i < path.length; i++) {
+      let move = path[i]
+      setTimeout(() => {
+        console.log(move);
+        setConfiguration((oldConf) => {
+          let [oldX, oldY, newX, newY] = nextMove(oldConf, move);
+          console.log(oldX, oldY, newX, newY);
+          const newConf = deepCopyArray(oldConf);
+          [newConf[newX][newY], newConf[oldX][oldY]] = [newConf[oldX][oldY], newConf[newX][newY]];
+          return newConf;
+        })
+      }, 1000 * i);
 
     }
   }
@@ -79,7 +81,7 @@ export default function HomePage() {
       },
       body: JSON.stringify(data)
     });
-    return response.json(); 
+    return response.json();
   }
 
 
@@ -88,7 +90,8 @@ export default function HomePage() {
     <>
       <nav>N-PUZZLE SOLVER</nav>
       <div className='main-div'>
-        <Puzzle grid={configuration} updatePuzzle={setConfiguration}/>
+        <Puzzle grid={configuration} updatePuzzle={setConfiguration} />
+        <Tutorial></Tutorial>
         <div className='settings-div'>
           <Options algorithm={algorithm} setAlgorithm={setAlgorithm}></Options>
           <Button onClick={solvePuzzle} colorScheme='teal'>Solve Puzzle!</Button>

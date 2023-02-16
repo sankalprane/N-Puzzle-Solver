@@ -1,0 +1,10 @@
+.mouse-pointer-2 {
+    position: relative;
+    left: -250px;
+    top: -80px
+}
+
+.hover-node {
+    width: 300px;
+    height: 250px;
+}
