@@ -1,0 +1,51 @@
+.rd3t-label__title {
+    display: none;
+}
+
+.node__root>circle {
+    fill: red;
+}
+
+#tree-wrapper {
+    text-decoration:none;
+    position:relative;
+}
+
+#tree-wrapper #tooltip {
+    display:none;
+    position:fixed;
+    overflow:hidden;
+}
+
+.small-puzzle-container {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    height: 100px;
+    background-color: #f0dc82;
+    border: 1px solid brown;
+  }
+  
+  .small-puzzle-row {
+    display: flex;
+    height: calc(100px / 3);
+  }
+  
+  .small-puzzle-square {
+    display: flex;
+    width: calc(100px / 3);
+    box-sizing: border-box;
+    background-color: #fff1c1;
+    border: 1px solid brown;
+    text-align: center;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  }
+
+  .small-blank-tile {
+    display: flex;
+    width: calc(100px / 3);
+    opacity: 0;
+  }
