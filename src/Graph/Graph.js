@@ -21,15 +21,16 @@ export default function Graph({data}) {
     function onNodeMouseOver(e) {
         console.log(e.data.name);
         let array = e.data.name;
+        console.log('array', array);
         tooltip.style.display = "block";
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 if (array[i][j] !== 0) {
-                    square[i*3+j] = array[i][j];
+                    square[i*3+j].innerHTML = array[i][j];
                     if (square[i*3+j].classList.contains('small-blank-tile'))
-                    square[i*3+j].classList.remove('small-blank-tile')
+                        square[i*3+j].classList.remove('small-blank-tile')
                 } else {
-                    square[i*3+j] = ''
+                    square[i*3+j].innerHTML = ''
                     square[i*3+j].classList.add('small-blank-tile')
                 }
             }
