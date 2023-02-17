@@ -48,7 +48,6 @@ export default function HomePage() {
 
   function solve(path) {
     const mainDiv = document.querySelector(".main-div");
-    mainDiv.classList.add("unclickable");
     for (let i = 0; i < path.length; i++) {
       let move = path[i]
       setTimeout(() => {
@@ -74,10 +73,16 @@ export default function HomePage() {
       setTree(res.tree);
       // console.log(this.data);
       solve(res.path);
+    }).catch(() => {
+      const mainDiv = document.querySelector(".main-div");
+      if (mainDiv.classList.has("unclickable"))
+        mainDiv.classList.remove("unclickable");
     });
   }
 
   async function postData(url, data = { start: configuration }) {
+    const mainDiv = document.querySelector(".main-div");
+    mainDiv.classList.add("unclickable");
     const response = await fetch(`http://localhost:4000/${algorithm}`, {
       method: 'POST',
       headers: {
