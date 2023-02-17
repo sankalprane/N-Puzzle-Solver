@@ -19,9 +19,9 @@ export default function Graph({data}) {
     const square = document.querySelectorAll(".small-puzzle-square");
 
     function onNodeMouseOver(e) {
-        console.log(e.data.name);
+        // console.log(e.data.name);
         let array = e.data.name;
-        console.log('array', array);
+        // console.log('array', array);
         tooltip.style.display = "block";
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {

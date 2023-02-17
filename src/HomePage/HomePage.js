@@ -47,24 +47,28 @@ export default function HomePage() {
   }
 
   function solve(path) {
+    const mainDiv = document.querySelector(".main-div");
+    mainDiv.classList.add("unclickable");
     for (let i = 0; i < path.length; i++) {
       let move = path[i]
       setTimeout(() => {
         console.log(move);
         setConfiguration((oldConf) => {
           let [oldX, oldY, newX, newY] = nextMove(oldConf, move);
-          console.log(oldX, oldY, newX, newY);
+          // console.log(oldX, oldY, newX, newY);
           const newConf = deepCopyArray(oldConf);
           [newConf[newX][newY], newConf[oldX][oldY]] = [newConf[oldX][oldY], newConf[newX][newY]];
           return newConf;
         })
+        if (i === path.length - 1)
+          mainDiv.classList.remove("unclickable");
       }, 1000 * i);
 
     }
   }
 
   function solvePuzzle() {
-    console.log('working??');
+    // console.log('working??');
     postData().then((res) => {
       console.log(res);
       setTree(res.tree);

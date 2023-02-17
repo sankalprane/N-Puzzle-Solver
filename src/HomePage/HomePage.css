@@ -38,3 +38,7 @@ nav {
     font-size: 50px;
 
 }
+
+.unclickable {
+    pointer-events: none
+}

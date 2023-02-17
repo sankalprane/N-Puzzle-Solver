@@ -11,13 +11,13 @@ export default function Puzzle({ grid, updatePuzzle }) {
     }
 
     function moveTile(oldX, oldY) {
-        console.log('inside moveTile old values', oldX, oldY);
+        // console.log('inside moveTile old values', oldX, oldY);
         for (let i = 0; i < dir_row.length; i++) {
             let newX = oldX + dir_row[i];
             let newY = oldY + dir_col[i];
             if (newX >= 0 && newY >= 0 && newX < 3 && newY < 3) {
                 if (grid[newX][newY] === 0) {
-                    console.log('inside moveTile old values', newX, newY);
+                    // console.log('inside moveTile old values', newX, newY);
                     updatePuzzle((oldConf) => {
                         const newConf = deepCopyArray(oldConf);
                         [newConf[newX][newY], newConf[oldX][oldY]] = [newConf[oldX][oldY], newConf[newX][newY]];
